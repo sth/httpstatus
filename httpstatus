@@ -1,0 +1,3 @@
+#!/bin/sh
+set -eu
+curl -sS -o /dev/null -w "%{http_code}\n" "$1"

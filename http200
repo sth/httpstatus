@@ -1,6 +1,6 @@
 #!/bin/sh
 # Check if a URL returns status 200
 set -eu
-HTTP_CODE=$(curl -sS -o /dev/null -w "%{http_code}" "$1")
+HTTP_CODE=$(curl -sS --head -o /dev/null -w "%{http_code}" "$1")
 echo "$HTTP_CODE"
 test "$HTTP_CODE" == 200

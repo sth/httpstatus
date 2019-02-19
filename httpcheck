@@ -1,0 +1,25 @@
+#!/bin/sh
+
+set -eu
+PROG="$0"
+
+usage() {
+	echo "Usage: $PROG STATUS URL"
+	echo
+	echo "Check if the given URL returns the HTTP status code STATUS"
+	echo
+	echo "Exit with 0 if it does, 1 otherwise."
+}
+
+if [ $# != 0 ] && [ "x$1" = "x-h" -o "x$1" = "x--help" ]; then
+	usage
+	exit
+fi
+
+if [ $# != 2 ]; then
+	echo "$PROG: Wrong number if parameters" >&2
+	usage >&2
+	exit 2
+fi
+
+test "$1" = `httpstatus "$2"`

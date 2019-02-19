@@ -17,9 +17,13 @@ if [ $# != 0 ] && [ "x$1" = "x-h" -o "x$1" = "x--help" ]; then
 fi
 
 if [ $# != 2 ]; then
-	echo "$PROG: Wrong number if parameters" >&2
+	echo "$PROG: Wrong number of parameters" >&2
 	usage >&2
 	exit 2
 fi
 
-test "$1" = `httpstatus "$2"`
+STATUS=`httpstatus "$2"`
+if [ "$1" != "$STATUS" ]; then
+	echo "Unexpected HTTP status: $STATUS"
+	exit 1
+fi

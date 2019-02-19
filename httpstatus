@@ -1,3 +1,23 @@
 #!/bin/sh
 set -eu
+
+PROG="$0"
+
+usage() {
+	echo "Usage: $PROG URL"
+	echo
+	echo "Print the http status code for the given URL"
+}
+
+if [ $# != 0 ] && [ "x$1" = "x-h" -o "x$1" = "x--help" ]; then
+	usage
+	exit
+fi
+
+if [ $# != 1 ]; then
+	echo "$PROG: Wrong number of parameters" >&2
+	usage >&2
+	exit 2
+fi
+
 curl -sS --head -o /dev/null -w "%{http_code}\n" "$1"

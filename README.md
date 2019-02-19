@@ -1,6 +1,6 @@
 # httpstatus
 
-Scripts to check the HTTP status code for an URL
+Shell scripts to check the HTTP status code for an URL
 
 ## Usage
 
